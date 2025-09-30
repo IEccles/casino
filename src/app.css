@@ -1,1 +1,94 @@
+@import "tailwindcss";
+
+:root {
+	--casino-green: #0b3d2e;
+	--casino-red: #ff385c; /* brighter red for accents */
+	--casino-black: #0a0a0a;
+	--casino-gold: #ffd66b; /* brighter gold for glow */
+	--casino-gold-deep: #b88a1f;
+}
+
+html, body, #svelte {
+	height: 100%;
+}
+
+/* Vibrant felt with subtle animated glow */
+body {
+	background:
+		radial-gradient(60% 40% at 20% 20%, rgba(24, 180, 140, 0.25), transparent 70%),
+		radial-gradient(50% 35% at 80% 10%, rgba(16, 120, 90, 0.25), transparent 60%),
+		radial-gradient(40% 30% at 50% 90%, rgba(12, 90, 70, 0.25), transparent 60%),
+		linear-gradient(180deg, #063223, #041a13 60%, #04150f);
+	color: #f7f7f7;
+}
+
+/* Neon/glass panels */
+.casino-panel {
+	@apply rounded-xl border shadow-xl shadow-black/40 backdrop-blur-md;
+	border-image: linear-gradient(180deg, rgba(212,175,55,0.45), rgba(0,0,0,0.4)) 1;
+	background:
+		linear-gradient(180deg, rgba(2, 22, 16, 0.65), rgba(3, 30, 22, 0.65));
+}
+
+/* Glowing primary button with subtle shimmer */
+.casino-button {
+	@apply px-4 py-2 rounded-lg font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden;
+	background: linear-gradient(180deg, var(--casino-gold), var(--casino-gold-deep));
+	color: #1b1b1b;
+	box-shadow: 0 0 0 1px rgba(255, 214, 107, 0.5) inset, 0 8px 24px rgba(255, 214, 107, 0.2);
+}
+.casino-button::after {
+	content: "";
+	position: absolute; inset: 0; pointer-events: none;
+	background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+	transform: translateX(-120%);
+	animation: shimmer 3s infinite;
+}
+.casino-button:hover {
+	filter: brightness(1.05) saturate(1.1);
+	box-shadow: 0 0 0 1px rgba(255, 214, 107, 0.6) inset, 0 10px 28px rgba(255, 214, 107, 0.28);
+}
+.casino-button:active {
+	transform: translateY(1px);
+}
+
+/* Table felt with inner glow */
+.table-surface {
+	@apply rounded-2xl border shadow-inner;
+	border-color: rgba(16, 90, 70, 0.7);
+	background:
+		radial-gradient(ellipse at center, rgba(20, 120, 90, 0.25), rgba(8, 45, 34, 0.25)),
+		radial-gradient(ellipse at center, rgba(17,80,60,0.9), rgba(6,32,24,0.95));
+	box-shadow: inset 0 0 50px rgba(0,0,0,0.35);
+}
+
+/* Navigation with active glow */
+.nav-link {
+	@apply px-3 py-2 rounded-md font-medium transition;
+	color: #ddf6ec;
+}
+.nav-link:hover { background: rgba(13, 148, 136, 0.25); }
+.nav-link.active {
+	background: linear-gradient(180deg, rgba(212,175,55,0.18), rgba(212,175,55,0.08));
+	box-shadow: 0 0 0 1px rgba(212,175,55,0.45) inset, 0 0 16px rgba(212,175,55,0.2);
+	color: #fff7d6;
+}
+
+/* Chip badge glow */
+.badge {
+	@apply inline-flex items-center gap-2 px-2 py-1 rounded-md text-sm;
+	background: linear-gradient(180deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05));
+	border: 1px solid rgba(212,175,55,0.35);
+	color: #fff1b3;
+	box-shadow: 0 0 24px rgba(212,175,55,0.2);
+}
+
+/* Utility variant buttons (optional) */
+.btn-red { background: linear-gradient(180deg, #ff6b81, #b22222); color: #1b1b1b; }
+.btn-black { background: linear-gradient(180deg, #e3e3e3, #9b9b9b); color: #101010; }
+.btn-green { background: linear-gradient(180deg, #56f1c6, #109e7f); color: #08261f; }
+
+/* Animations */
+@keyframes shimmer { 100% { transform: translateX(120%); } }
+
 @import 'tailwindcss';
